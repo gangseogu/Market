@@ -1,0 +1,15 @@
+server:
+  port: 8888
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+  properties:
+    hibernate:
+      format_sql: true
+  datasource:
+    driver-class-name:
+    url:
+    username:
+    password:
