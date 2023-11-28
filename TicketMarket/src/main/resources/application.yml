@@ -1,7 +1,11 @@
 server:
   port: 8888
 
-#spring:
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/view/
+      suffix: .jsp
 #  jpa:
 #    hibernate:
 #      ddl-auto: create
