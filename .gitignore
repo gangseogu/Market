@@ -206,4 +206,10 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+*.project
+*.credential-config.json
+*.data-sources.json
+*.project-metadata.json
+*.project-settiongs.json
+
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,windows,intellij
