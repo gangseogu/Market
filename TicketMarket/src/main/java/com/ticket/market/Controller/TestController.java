@@ -12,6 +12,6 @@ public class TestController {
     @GetMapping("test")
     public String test(Model model){
         System.out.println("test");
-        return "origin/main";
+        return "main";
     }
 }
