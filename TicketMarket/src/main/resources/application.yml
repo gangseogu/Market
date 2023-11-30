@@ -6,14 +6,14 @@ spring:
     view:
       prefix: /WEB-INF/view/origin/
       suffix: .jsp
-#  jpa:
-#    hibernate:
-#      ddl-auto: create
-#  properties:
-#    hibernate:
-#      format_sql: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+  properties:
+    hibernate:
+      format_sql: true
   datasource:
-    driver-class-name:
-    url:
-    username:
-    password:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    username: MARKET
+    password: MARKET
