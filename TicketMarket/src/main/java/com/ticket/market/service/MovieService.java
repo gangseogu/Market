@@ -32,30 +32,14 @@ public class MovieService {
 
             try {
                 doc = Jsoup.connect("http://www.cgv.co.kr/movies/").get();
-                System.out.println("doc = " + doc);
-                /* Elements */
                 Elements ranks = doc.select(".rank");
-                /* logger.info("rank" + ranks); */
-                System.out.println("ranks = " + ranks);
                 Elements imgs = doc.select(".thumb-image > img");
-                /* logger.info("imgs" + imgs); */
-
                 Elements movieAges = doc.select(".ico-grade");
-                System.out.println("movieAges = " + movieAges);
-                /* logger.info("ico-grade" + movieAges); */
-
                 Elements movieTitles = doc.select("div.box-contents strong.title");
-                /* logger.info("titles" + movieTitles); */
-
+                Elements movieTitleIds = doc.select("div.box-contents .link-reservation");
                 Elements movieRates = doc.select(".percent span");
-                /* logger.info("percents" + movieRates); */
-
-
                 Elements movieOpenDates = doc.select(".txt-info strong");
-                /* logger.info("percents" + movieOpenDates); */
-
                 Elements likes = doc.select(".count strong>i");
-                /* logger.info("counts" + likes); */
                 List<MovieDto> list = new ArrayList<MovieDto>();
 
                 for(int i = 0; i < ranks.size(); i++) {
@@ -70,6 +54,20 @@ public class MovieService {
                     }
 
                     String movieTitle = movieTitles.get(i).text();
+
+                    //movieId값 가져오기
+                    String hrefValue = movieTitleIds.get(i).attr("href");
+
+                    // "MOVIE_CD=" 다음의 숫자를 추출
+                    int startIndex = hrefValue.indexOf("MOVIE_CD=") + 9;
+                    int endIndex = hrefValue.indexOf("&", startIndex);
+                    if (endIndex == -1) {
+                        endIndex = hrefValue.length();
+                    }
+
+                    // "MOVIE_CD=" 다음의 값 출력
+                    String movieCdValue = hrefValue.substring(startIndex, endIndex);
+
                     String movieRate = movieRates.get(i).text();
                     String movieOpenDate = movieOpenDates.get(i).text();
                     String like = "";
@@ -77,14 +75,13 @@ public class MovieService {
                         like = likes.get(i).text();
                     }
                     int seq = i;
-                    MovieDto movieDto = new MovieDto(rank, img, movieAge, movieTitle, movieRate, movieOpenDate, like, seq);
+                    MovieDto movieDto = new MovieDto(rank, img, movieAge, movieTitle, movieCdValue, movieRate, movieOpenDate, like, seq);
 
                     logger.info(movieDto.toString());
                     list.add(movieDto);
 
-                    return list;
                 }
-                gson = new Gson().toJson(list);
+                return list;
 
             } catch (IOException e) {
                 // TODO Auto-generated catch block

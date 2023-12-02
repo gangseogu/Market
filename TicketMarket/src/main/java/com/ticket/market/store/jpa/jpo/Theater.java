@@ -1,5 +1,6 @@
 package com.ticket.market.store.jpa.jpo;
 
+import com.ticket.market.domain.TheaterModel;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,8 +23,8 @@ public class Theater {
     private String TheaLimitColumn;
     private String TheaBannedSeat;
 
-    public com.ticket.market.domain.Theater toDomain() {
-        return new com.ticket.market.domain.Theater(
+    public TheaterModel toDomain() {
+        return new TheaterModel(
                 this.TheaName,
                 this.TheaLimitRow,
                 this.TheaLimitColumn,
