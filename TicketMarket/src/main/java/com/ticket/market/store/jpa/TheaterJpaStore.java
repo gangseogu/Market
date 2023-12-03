@@ -1,6 +1,7 @@
 package com.ticket.market.store.jpa;
 
 import com.ticket.market.domain.TheaterModel;
+import com.ticket.market.store.jpa.jpo.Theater;
 import com.ticket.market.store.jpa.repository.TheaterRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -16,13 +17,13 @@ public class TheaterJpaStore implements TheaterStore {
     @Override
     public List<TheaterModel> findAllTheater() {
         return theaterRepository.findAll().stream()
-                .map(com.ticket.market.store.jpa.jpo.Theater::toDomain)
+                .map(Theater::toDomain)
                 .sorted()
                 .collect(Collectors.toList());
     }
 
     @Override
-    public void save(com.ticket.market.store.jpa.jpo.Theater theaterJpo) {
+    public void save(Theater theaterJpo) {
         theaterRepository.save(theaterJpo);
     }
 
@@ -33,7 +34,7 @@ public class TheaterJpaStore implements TheaterStore {
 
     @Override
     public void update(TheaterModel theaterModel) {
-        com.ticket.market.store.jpa.jpo.Theater theaterJpo = theaterRepository.findById(theaterModel.getTheaName()).orElseThrow(() -> new IllegalArgumentException("error"));
+        Theater theaterJpo = theaterRepository.findById(theaterModel.getTheaName()).orElseThrow(() -> new IllegalArgumentException("error"));
     }
 
     @Override

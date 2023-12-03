@@ -1,32 +1,34 @@
 package com.ticket.market.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ticket.market.Dto.MovieDto;
+import com.ticket.market.store.jpa.MovieStore;
+import com.ticket.market.store.jpa.jpo.Movie;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import com.google.gson.Gson;
 
 @Service
 @RequiredArgsConstructor
 public class MovieService {
 
+    private final MovieStore movieStore;
 
         private static Logger logger = LoggerFactory.getLogger(MovieService.class);
 
-        public List<com.ticket.market.Dto.MovieDto> getCrawling() {
+        public List<MovieDto> getCrawling() {
             Document doc;
             String gson = "";
 
@@ -90,5 +92,34 @@ public class MovieService {
 
 
             return null;
+    }
+
+    public void insertMovie(List<String> selectedMovies) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        HashMap<String, String> map = new HashMap<String, String>();
+        List<HashMap<String, String>> maps = new ArrayList<>();
+
+        for (String s : selectedMovies) {
+            map = objectMapper.readValue(s, new TypeReference<HashMap<String, String>>() {});
+            maps.add(map);
+        }
+
+        List<String> idList = new ArrayList<>();
+        for(HashMap<String, String> mapItem : maps) {
+            idList.add(mapItem.get("movieId"));
+        }
+
+        List<MovieDto> originList = getCrawling();
+        // 이중포문 -> 선택한 열만 골라내기
+
+        List<MovieDto> selectList = originList.stream()
+                .filter(movieDto -> idList.contains(movieDto.getMovieId()))
+                .collect(Collectors.toList());
+
+        System.out.println("selectList = " + selectList);
+        //저장
+        selectList.forEach(movieDto -> movieStore.save(new Movie(movieDto)));
+
     }
 }
