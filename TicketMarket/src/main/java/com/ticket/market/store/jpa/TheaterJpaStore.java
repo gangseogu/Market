@@ -16,8 +16,8 @@ public class TheaterJpaStore implements TheaterStore {
 
     @Override
     public List<TheaterModel> findAllTheater() {
-        return theaterRepository.findAll().stream()
-                .map(Theater::toDomain)
+        return theaterRepository.findAll().stream() // 나오는게 jpolist
+                .map(Theater::toDomain) // jpolist -> volist로 변환됨
                 .sorted()
                 .collect(Collectors.toList());
     }
