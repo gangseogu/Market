@@ -8,8 +8,10 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ticket.market.service.UserService;
 
@@ -26,12 +28,13 @@ public class UserController {
 	}
 	
 	@PostMapping(value = "/login")
-	public String login() {
+	public String login(@RequestParam String user_id, @RequestParam String user_pw, Model model) {
 		System.out.println("로그인 처리");
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if(authentication instanceof AnonymousAuthenticationToken) {
 			return "loginForm";
 		}
+		SecurityContextHolder.getContext().setAuthentication(authentication);
 		System.out.println("로그인 성공");
 		
 		return "main";
