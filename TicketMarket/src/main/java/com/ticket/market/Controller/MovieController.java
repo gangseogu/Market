@@ -20,7 +20,7 @@ import java.util.List;
 public class MovieController {
     private final MovieService movieService;
 
-    @GetMapping("test")
+    @GetMapping("addmovie")
     public String test(Model model){
         List<MovieDto> cgvList = movieService.getCrawling();
         model.addAttribute("cgvList",cgvList);
