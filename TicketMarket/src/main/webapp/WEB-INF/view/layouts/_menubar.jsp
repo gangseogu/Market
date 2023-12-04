@@ -128,7 +128,7 @@
                                                 <a href="#" class="nav-link">기프트카드</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a href="#" class="nav-link">영화관람권</a>
+                                                <a href="./payment.do" class="nav-link">영화관람권</a>
                                             </li>
                                         </ul>
                                     </div>
