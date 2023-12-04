@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class Theater {
+public class TheaterModel {
 
     private String TheaName;
     private String TheaLimitRow;
