@@ -18,6 +18,10 @@ spring:
     properties:
       hibernate:
       format_sql: true
-    show-sql: true
+    show-sql: true   
+    
+mybatis:
+  mapper-locations: classpath:sqls/*.xml
+  type-aliases-package: com.ticket.market.vo
 
  

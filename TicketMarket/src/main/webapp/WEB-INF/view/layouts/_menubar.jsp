@@ -18,7 +18,7 @@
 		                        <div class="d-flex ">
 								<!-- 로그인 -->
 									<div class="px-3 text-center">
-										<a href="#">
+										<a href="/loginForm">
 											 <i class="fs-1 ri-lock-2-line"></i>
 											 <br>
 											 <span class="fs-9">로그인</span>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.ticket.market.mapper.UserMapper">
+
+	<!-- 로그인 -->
+	<select id="login" resultType="UserVo">
+	SELECT USER_ID, USER_NAME, USER_MAIL, USER_AUTH, USER_AGE, USER_JOINDATE, USER_KAKAO , USER_NAVER 
+		FROM USERINFO
+		WHERE USER_ID = #{user_id}
+		AND USER_PW = #{user_pw}
+		AND USER_DELFLAG = 'Y';
+	</select>
+
+	<!-- 회원가입 여부 확인 -->
+	<select id="CheckSignUp" parameterType="java.util.Map">
+		SELECT COUNT(*) 
+			FROM USERINFO
+			WHERE USER_NAME = #{user_name}
+			AND USER_BIRTH = #{user_birth}
+			AND USER_TEL = ${user_tel}
+	</select>
+	
+	<!-- 회원 가입 -->
+	<insert id="signUpUser" parameterType="UserVo">
+		INSERT INTO MARKET.USERINFO (USER_ID, USER_PW, USER_NAME, 
+									USER_MAIL, USER_BIRTH, USER_TEL, 
+									USER_AUTH, USER_DELFLAG, USER_JOINDATE, 
+									USER_AGE, USER_KEY, USER_KAKAO, USER_NAVER)
+		VALUES(#{user_id}, #{user_pw}, #{user_name}, 
+				#{user_mail}, #{user_birth}, #{user_tel}, 
+				'U' , 'Y' , SYSDATE , 
+				#{user_age}, 'N', '', '')
+	</insert>
+	
+	<!-- 아이디 찾기 -->
+	<select id="findId" parameterType="java.util.Map">
+		SELECT USER_ID 
+			FROM USERINFO
+			WHERE USER_NAME = #{user_name}
+			AND USER_TEL = #{user_tel}
+	</select>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="changePw" parameterType="java.util.Map">
+		UPDATE USERINFO SET USER_PW = #{user_pw}
+			WHERE USER_ID = #{user_id};
+	</update>
+	
+	<!-- 유저아이디로 유저정보 검색 -->
+	<select id="getUserById">
+		SELECT *
+			FROM USERINFO
+			WHERE USER_ID = #{user_id}
+	</select>
+	
+	<!-- 관리자 일반회원정보 검색 -->
+	<select id="findAllUsers">
+		SELECT USER_ID , USER_NAME , USER_MAIL , USER_BIRTH , USER_TEL , USER_DELFLAG , USER_JOINDATE , USER_AGE , USER_KEY , USER_KAKAO , USER_NAVER 
+			FROM USERINFO
+			WHERE USER_AUTH = 'U'
+	</select>
+	
+	<!-- 회원 닉네임 수정 -->
+	<update id="changeNn" parameterType="java.util.Map">
+		UPDATE USERINFO 
+			SET USER_NICKNAME = #{user_nickname}
+			WHERE USER_ID = #{user_id}
+	</update>
+	
+	<!-- 어드민 계정 등록 -->
+	<update id="changeToAdmin">
+		UPDATE USERINFO 
+			SET USER_AUTH = 'A'
+			WHERE USER_ID = #{user_id}
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<update id="changeDelflag">
+		UPDATE USERINFO 
+			SET USER_DELFLAG = 'N'
+			WHERE USER_ID = #{user_id}
+	</update>
+	
+	<!-- 회원 삭제 -->
+	<delete id="deleteUser">
+		DELETE FROM USERINFO WHERE USER_ID = #{user_id}
+	</delete>
+	
+</mapper>
+  
