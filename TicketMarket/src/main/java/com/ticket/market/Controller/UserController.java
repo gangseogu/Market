@@ -34,6 +34,13 @@ public class UserController {
 		if(authentication instanceof AnonymousAuthenticationToken) {
 			return "loginForm";
 		}
+		
+		if(authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+    		return "admin/main";
+    	}else if(authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+    		return "user/main";
+    	}
+		
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		System.out.println("로그인 성공");
 		

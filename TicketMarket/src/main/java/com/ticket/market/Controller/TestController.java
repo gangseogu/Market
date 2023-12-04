@@ -18,11 +18,7 @@ public class TestController {
         //로그인한 경우
         if(authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
         	
-        	if(authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
-        		return "admin/main";
-        	}else if(authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
-        		return "user/main";
-        	}
+        	
 
         }
         
