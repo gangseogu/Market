@@ -11,7 +11,9 @@ import com.ticket.market.store.jpa.jpo.Review;
 @Transactional(readOnly = true)
 @Repository
 public interface ReviewRepository extends CrudRepository<Review, Long> {
-	List<Review> findAll();
+	//영화번호로 조회하기
+	List<Review> findByMovieId(String movieId);
+	//reviewID로 조회하기
 	Review findById(long id);
-	
+	List<Review> findByUserId(String userId);
 }

@@ -35,22 +35,23 @@ public class Review {
 	long reviewId;
 	String userId;
 	String movieId;
+	String movieTitle;
 	@Column(length = 4000)
 	String reviewContent;
-	@Column(precision = 5, scale = 2)
-	BigDecimal rating;
+	@Column(precision = 5, scale = 0)
+	int rating;
 	@CreationTimestamp
 	Date registDate;
 	@UpdateTimestamp
 	Date updateDate;
 	String photoPath;
 
-	public Review(String userId, String movieId, String reviewContent, String rating, String photoPath) {
+	public Review(String userId, String movieId, String reviewContent, int rating, String photoPath) {
 		super();
 		this.userId = userId;
 		this.movieId = movieId;
 		this.reviewContent = reviewContent;
-		this.rating = new BigDecimal(rating);
+		this.rating = rating;
 		this.photoPath = photoPath;
 	}
 }

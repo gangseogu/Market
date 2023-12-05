@@ -24,19 +24,8 @@ public class test {
     
 //    @Test
 //    void RepositoryTest() {
-//    	Review review = new Review("wjddns7828","test1","asdasd",new BigDecimal("3.14"), "asdasd");
-//    	Review review2 = new Review("wjddns7828","test1","asdasd",new BigDecimal("3.14"), "asdasd");
-//    	Review review3 = new Review("wjddns7828","test1","asdasd",new BigDecimal("3.14"), "asdasd");
-//    	Review review4 = new Review("wjddns7828","test1","asdasd",new BigDecimal("3.14"), "asdasd");
-//    	List<Review> revies = new ArrayList<>();
-//    	revies.add(review);
-//    	revies.add(review2);
-//    	revies.add(review3);
-//    	revies.add(review4);
-//    	reviewRepository.saveAll(revies);
-//    	reviewRepository.deleteById(review4.getReviewId());
-//    	List<Review> list = reviewRepository.findAll();
-//    	System.out.println(list);
+//    	List<Review> review = res.findByMovieId("1");
+//    	System.out.println(review.toString());
 //    }
     
 //    @Test

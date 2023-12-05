@@ -2,9 +2,15 @@ server:
   port: 8888
 
 spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+      location: /Users/Administrator/Desktop
+      enabled: true
   mvc:
     view:
-      prefix: /WEB-INF/view/origin/
+      prefix: /WEB-INF/view/
       suffix: .jsp
   datasource:
     driver-class-name: oracle.jdbc.driver.OracleDriver
@@ -20,4 +26,3 @@ spring:
       format_sql: true
     show-sql: true
 
- 

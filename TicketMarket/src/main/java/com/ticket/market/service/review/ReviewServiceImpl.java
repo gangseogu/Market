@@ -20,8 +20,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<Review> findAll() {
-		return reviewRepository.findAll();
+	public List<Review> findByMovieId(String movieId) {
+		return reviewRepository.findByMovieId(movieId);
 	}
 
 	@Override
@@ -38,6 +38,11 @@ public class ReviewServiceImpl implements ReviewService {
 	public Review findById(long reviewId) {
 		Review review = reviewRepository.findById(reviewId);
 		return review;
+	}
+
+	@Override
+	public List<Review> findByUserid(String userId) {
+		return reviewRepository.findByUserId(userId);
 	}
 
 }

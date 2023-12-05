@@ -70,7 +70,7 @@ if (document.querySelector('#rater-unlimitedstar'))
 if (document.querySelector('#rater-onhover'))
     var starRatinghover = raterJs({
         starSize: 22,
-        rating: 1,
+        rating: 0,
         element: document.querySelector("#rater-onhover"),
         rateCallback: function rateCallback(rating, done) {
             this.setRating(rating);
@@ -78,9 +78,11 @@ if (document.querySelector('#rater-onhover'))
         },
         onHover: function (currentIndex, currentRating) {
             document.querySelector('.ratingnum').textContent = currentIndex;
+            document.querySelector('.rating').value = currentIndex;
         },
         onLeave: function (currentIndex, currentRating) {
             document.querySelector('.ratingnum').textContent = currentRating;
+            document.querySelector('.rating').value = currentRating;
         }
     });
 

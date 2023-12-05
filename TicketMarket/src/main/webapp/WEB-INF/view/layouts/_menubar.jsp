@@ -8,7 +8,7 @@
                     <div class="col-sm-12 border-bottom border-5 border-primary">
 	                    <div class="d-flex mb-3 align-items-end">
 		                    <div class="navbar-brand-box flex-fill">
-		                        <a href="index.html" class="float-start" style="height: 100%">
+		                        <a href="/" class="float-start" style="height: 100%">
 	                                <img src="./images/TFT.png" style="height: 126px">
 	                                <span class="display-5 align-bottom">LoremTheater</span>
 		                        </a>
