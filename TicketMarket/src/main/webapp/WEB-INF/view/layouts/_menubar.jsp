@@ -121,14 +121,17 @@
                                     </a>
                                     <div class="collapse menu-dropdown" id="store">
                                         <ul class="nav nav-sm flex-column">
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link">패키지</a>
+                                        	<li class="nav-item">
+                                                <a href="./payment.do" class="nav-link">결제하기</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a href="#" class="nav-link">기프트카드</a>
+                                                <a href="./myPayment.do" class="nav-link">결제 내역</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a href="./payment.do" class="nav-link">영화관람권</a>
+                                                <a href="./myCoupon.do" class="nav-link">마일리지 내역</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="./myCoupon.do" class="nav-link">할인쿠폰 내역</a>
                                             </li>
                                         </ul>
                                     </div>
