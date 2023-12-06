@@ -29,6 +29,8 @@ data-preloader="disable" data-bs-theme="light" data-layout-width="boxed" data-la
         <link href="../assets/css/app.min.css" rel="stylesheet" type="text/css" />
         <!-- custom Css-->
         <link href="../assets/css/custom.min.css" rel="stylesheet" type="text/css" />
+        
+        <link href="./css/myPayment.css" rel="stylesheet" type="text/css" />
     </head>
     <body style="padding-top: 150px;">
     
@@ -45,54 +47,45 @@ data-preloader="disable" data-bs-theme="light" data-layout-width="boxed" data-la
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">결제하기</h4>
+                                    <h4 class="mb-sm-0">결제내역</h4>
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">예매</a></li>
-                                            <li class="breadcrumb-item active">결제하기</li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">마이페이지</a></li>
+                                            <li class="breadcrumb-item active">결제내역</li>
                                         </ol>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- /현재 메뉴 -->
-						<table>
-							<tr>
-								<th>예약번호</th>
-								<td id="reId">${reservation.get(0).reservationId }</td>
-							</tr>
-							<tr>
-								<th>상품명</th>
-								<td id="reName">${reservation.get(0).ticketName } ${reservation.size() }명</td>
-							</tr>
-							<tr>
-								<th>좌석번호</th>
-								<td>
-									<c:forEach items="${reservation}" var="r" varStatus="i">
-										${r.ticketColumn }${r.ticketRow }<c:if test="${i.last eq false}">, </c:if>
-									</c:forEach>
-								</td>
-							</tr>
-							<tr>
-								<th>상영시간</th>
-								<td>${reservation.get(0).startTime }</td>
-							</tr>
-							<tr>
-								<th>총 가격</th>
-								<td>
-									<c:set var="total" value="0"/>
-									<c:forEach items="${reservation }" var="r">
-										<c:set var="total" value="${total+r.ticketPrice }"/>
-									</c:forEach>
-									<span><fmt:formatNumber value="${total }" type="currency" currencySymbol=""/></span> 원
-									<span style="display:none;" id="rePrice"><c:out value="${total }"/></span>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2">
-									<button onclick="requestPay()">결제하기</button>
-								</td>
-							</tr>
+                       	${payment}
+                       	<div>
+                       		<div id="dateSelector">
+							    <button type="button" class="btn btn-soft-write">최근 6개월</button>
+							    <button type="button" class="btn btn-soft-write">2023년</button>
+							    <button type="button" class="btn btn-soft-write">2022년</button>
+							    <button type="button" class="btn btn-soft-write">2021년</button>
+							</div>
+                       	</div>
+						<table class="table table-nowrap">
+						    <thead>
+						        <tr>
+						            <th scope="col">번호</th>
+						            <th scope="col">예매번호</th>
+						            <th scope="col">결제일시</th>
+						            <th scope="col">결제금액</th>
+						            <th scope="col">상세보기</th>
+						        </tr>
+						    </thead>
+						    <tbody>
+						        <tr>
+						            <th scope="row"><a href="#" class="fw-semibold">#VZ2110</a></th>
+						            <td>Bobby Davis</td>
+						            <td>October 15, 2021</td>
+						            <td>$2,300</td>
+						            <td><a href="javascript:void(0);" class="link-success">View More <i class="ri-arrow-right-line align-middle"></i></a></td>
+						        </tr>
+						    </tbody>
 						</table>
                     </div>
                     <!-- /컨텐츠 내용 -->
@@ -135,10 +128,6 @@ data-preloader="disable" data-bs-theme="light" data-layout-width="boxed" data-la
 
         <!-- App js -->
         <script src="./assets/js/app.js"></script>
-        
-        <!-- 아임포트 -->
-        <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
-        <script src="./javascript/payment.js" type="text/javascript"></script>
     </body>
 
 </html>

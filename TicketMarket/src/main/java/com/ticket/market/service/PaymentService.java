@@ -1,5 +1,6 @@
 package com.ticket.market.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class PaymentService {
 	private final PaymentStore paymentStore;
 	
 	@Transactional
-	public List<PaymentModel> findAllByUserId(String userId) {
-		return paymentStore.findAllByUserId(userId);
+	public List<PaymentModel> findAllByUserIdAndPaymentDateBetween(String userId, LocalDate startDate, LocalDate endDate) {
+		return paymentStore.findAllByUserIdAndPaymentDateBetween(userId, startDate, endDate);
 	}
 }

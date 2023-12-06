@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+#dateSelector {
+	display: flex;	
+}
+
+.btn-soft-write {
+	margin-right: 5px;
+	margin-bottom: 10px;
+	background-color: white;
+	border-color: #DDD7DE;
+}
+
+.btn-soft-write:hover {
+	background-color: #6F4E78;
+	color: white;
+}

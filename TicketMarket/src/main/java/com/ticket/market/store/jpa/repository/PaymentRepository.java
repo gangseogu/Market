@@ -1,5 +1,6 @@
 package com.ticket.market.store.jpa.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
@@ -10,6 +11,6 @@ import com.ticket.market.store.jpa.jpo.Payment;
 @Transactional(readOnly = true)
 public interface PaymentRepository extends CrudRepository<Payment, String> {
 
-	List<Payment> findAllByUserId(String userId);
+	List<Payment> findAllByUserIdAndPaymentDateBetween(String userId, LocalDate startDate, LocalDate endDate);
 	
 }

@@ -1,5 +1,6 @@
 package com.ticket.market.Controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -56,8 +57,20 @@ public class PaymentController {
 		// 더미데이터 끝
 		
 		model.addAttribute("reservation",reservation);
-		model.addAttribute("payment", paymentService.findAllByUserId("user1"));
 		
 		return "payment";
+	}
+	
+	@RequestMapping(value="/myPayment.do", method = RequestMethod.GET)
+	public String myPayment(Model model) {
+		
+		log.info("@@@@@@@@@@@@@@@ 결제내역 이동");
+		
+		LocalDate startDate = LocalDate.of(2023, 10, 1);
+		LocalDate endDate = LocalDate.of(2023, 11, 30);
+		
+		model.addAttribute("payment", paymentService.findAllByUserIdAndPaymentDateBetween("user1", startDate, endDate));
+		
+		return "myPayment";
 	}
 }

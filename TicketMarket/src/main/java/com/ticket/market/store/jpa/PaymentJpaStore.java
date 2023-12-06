@@ -2,6 +2,8 @@ package com.ticket.market.store.jpa;
 
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,9 +20,10 @@ public class PaymentJpaStore implements PaymentStore{
 	private final PaymentRepository paymentRepository;
 	
 	@Override
-	public List<PaymentModel> findAllByUserId(String userId) {
-		return paymentRepository.findAllByUserId(userId).stream()
+	public List<PaymentModel> findAllByUserIdAndPaymentDateBetween(String userId, LocalDate startDate, LocalDate endDate) {
+		return paymentRepository.findAllByUserIdAndPaymentDateBetween(userId, startDate, endDate).stream()
 				.map(Payment::toDomain)
+				.sorted(Comparator.comparing(PaymentModel::getPaymentId).reversed())
 				.collect(Collectors.toList());
 	}
 }
