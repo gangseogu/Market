@@ -13,16 +13,12 @@ import com.ticket.market.vo.UserVo;
 
 @Service
 public class UserService implements UserMapper {
+	
 	@Autowired
 	private UserMapper mapper;
 	
-	private final PasswordEncoder encoder = new BCryptPasswordEncoder();
-
-	//로그인
-	@Override
-	public UserVo login(Map<String, Object> map) {
-		return mapper.login(map);
-	}
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	//회원가입 여부 확인
 	@Override
@@ -35,7 +31,7 @@ public class UserService implements UserMapper {
 	public int signUpUser(UserVo uvo) {
 		if(!uvo.getUser_id().equals("")) {
 			//비밀번호 암호화
-			uvo.setUser_pw(encoder.encode(uvo.getUser_pw()));
+			uvo.setUser_pw(passwordEncoder.encode(uvo.getUser_pw()));
 		}
 		return mapper.signUpUser(uvo);
 	}
@@ -51,7 +47,7 @@ public class UserService implements UserMapper {
 	public int changePw(Map<String, Object> map) {
 		String user_pw = (String) map.get("user_pw");
 		//비밀번호 암호화
-		String encodedPw = encoder.encode(user_pw);
+		String encodedPw = passwordEncoder.encode(user_pw);
 		map.put("user_pw", encodedPw);
 		return mapper.changePw(map);
 	}
@@ -92,9 +88,5 @@ public class UserService implements UserMapper {
 		return mapper.deleteUser(user_id);
 	}
 	
-	//비밀번호 암호화
-	public PasswordEncoder passwordEncoder() {
-		return this.encoder;
-	}
 
 }

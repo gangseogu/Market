@@ -5,15 +5,6 @@
   
 <mapper namespace="com.ticket.market.mapper.UserMapper">
 
-	<!-- 로그인 -->
-	<select id="login" resultType="UserVo">
-	SELECT USER_ID, USER_NAME, USER_MAIL, USER_AUTH, USER_AGE, USER_JOINDATE, USER_KAKAO , USER_NAVER 
-		FROM USERINFO
-		WHERE USER_ID = #{user_id}
-		AND USER_PW = #{user_pw}
-		AND USER_DELFLAG = 'Y';
-	</select>
-
 	<!-- 회원가입 여부 확인 -->
 	<select id="CheckSignUp" parameterType="java.util.Map">
 		SELECT COUNT(*) 
@@ -50,10 +41,11 @@
 	</update>
 	
 	<!-- 유저아이디로 유저정보 검색 -->
-	<select id="getUserById">
-		SELECT *
+	<select id="getUserById" parameterType="UserVo">
+		SELECT USER_ID , USER_PW, USER_AUTH
 			FROM USERINFO
 			WHERE USER_ID = #{user_id}
+			AND USER_DELFLAG = 'Y'
 	</select>
 	
 	<!-- 관리자 일반회원정보 검색 -->

@@ -59,19 +59,16 @@ data-preloader="disable" data-bs-theme="light" data-layout-width="boxed" data-la
                             </div>
                         </div>
                         <!-- /현재 메뉴 -->
-                        <!-- 로그인폼 -->
-                        <div id="loginForm">
-                        	<form action="/customLogin" method="post">
-								<input type="text" class="form-control" id="user_id" name="user_id" placeholder="User ID" required autofocus="autofocus">
-								<input type="password" class="form-control" id="user_pw" name="user_pw" placeholder="Password" required="required">
-	                        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-	                        	<input type="submit" class="form-control" id="submitBtn" value="Login">
+                        <!-- 가입여부 체크폼 -->
+                        <div id="checkSignUpForm">
+                        	<form action="/checkSignUp" method="post">
+								<input type="text" class="form-control" id="user_name" name="user_name" placeholder="이름을 입력해주세요." required autofocus="autofocus">
+								<input type="text" class="form-control" id="user_birth" name="user_birth" placeholder="법정생년월일 8자리를 입력해주세요." required="required">
+	                        	<input type="text" class="form-control" id="user_tel" name="user_tel" placeholder="휴대전화번호를 입력해주세요(01X 포함)" required="required" />
+	                        	<input type="submit" class="form-control" id="submitBtn" value="가입여부 확인">
 	                        </form>
-	                        
-	                        <a href="/checkSignUp">회원가입</a>
-	                        <a href="/findIdPw">아이디/비밀번호 찾기</a>
 						</div>
-						<!-- /로그인폼 -->
+						<!-- /가입여부 체크폼 -->
                     </div>
                     <!-- /컨텐츠 내용 -->
                 </div>

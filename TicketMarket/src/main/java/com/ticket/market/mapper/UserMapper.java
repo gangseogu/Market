@@ -10,8 +10,6 @@ import com.ticket.market.vo.UserVo;
 @Mapper
 public interface UserMapper {
 	
-	public UserVo login(Map<String, Object> map);
-	
 	public int CheckSignUp(Map<String, Object> map);
 	
 	public int signUpUser(UserVo uvo);

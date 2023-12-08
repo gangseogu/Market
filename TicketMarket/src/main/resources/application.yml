@@ -24,4 +24,9 @@ mybatis:
   mapper-locations: classpath:sqls/*.xml
   type-aliases-package: com.ticket.market.vo
 
- 
+# Spring Security 로그 레벨 설정
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        security: DEBUG
